@@ -1,39 +1,17 @@
 def APPS = []
 pipeline {
     // If you are running jenkins in a container use "agent { docker { image 'docker:18.09.0-git' }}"
-    agent {
-        kubernetes {
-          label 'docker'
-          defaultContainer 'jnlp'
-          yaml """
-apiVersion: v1
-kind: Pod
-metadata:
-  labels:
-    app: jenkins-docker
-spec:
-  containers:
-  - name: docker
-    image: docker:18.09.0-git
-    command:
-    - cat
-    tty: true
-    volumeMounts:
-    - mountPath: /var/run/docker.sock
-      name: docker-sock
-  volumes:
-  - name: docker-sock
-    hostPath:
-      path: /var/run/docker.sock
-"""
-        }
-    }
+	agent {
+		docker {
+			image 'docker:18.09.0-git'
+		}
+	}
 
     environment {
         GITHUB_HOOK_SECRET = "github-webhook-token-app-mono"
         //DOCKERHUB = credentials('dockerhub-credentials')
-        DOCKERHUB_USR = ""
-        DOCKERHUB_PSW = ""
+        DOCKERHUB_USR = "madhavdocker453"
+        DOCKERHUB_PSW = credentials('8e9c816c-014e-44a0-9973-41f17d94923e')
     }
 
     stages {
@@ -77,9 +55,9 @@ spec:
                             if (TO_BUILD == 0) {
                                 env.APP = app
                                 env.GIT_SHA = sh(returnStdout: true, script: "git rev-parse --short HEAD")
-                                sh '''docker build -t infracloud/app-mono-${APP}:${GIT_SHA} ./${APP}/
-                                docker push infracloud/app-mono-${APP}:${GIT_SHA}
-                                docker rmi infracloud/app-mono-${APP}:${GIT_SHA}
+                                sh '''docker build -t madhavdocker453/app-mono-${APP}:${GIT_SHA} ./${APP}/
+                                docker push madhavdocker453/app-mono-${APP}:${GIT_SHA}
+                                docker rmi madhavdocker453/app-mono-${APP}:${GIT_SHA}
                                 '''
                             }
                         }
