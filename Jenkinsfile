@@ -8,7 +8,7 @@ pipeline {
 	}
 
     environment {
-        GITHUB_HOOK_SECRET = "github-webhook-token-app-mono"
+        GITHUB_HOOK_SECRET = "5cbc196b8f966551fef6dc9f1f845754e756b213"
         //DOCKERHUB = credentials('dockerhub-credentials')
         DOCKERHUB_USR = "madhavdocker453"
         DOCKERHUB_PSW = credentials('8e9c816c-014e-44a0-9973-41f17d94923e')
