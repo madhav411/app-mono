@@ -7,7 +7,7 @@ app.controller('mainCtrl',
   function ($scope, $log, env_factory, factory) {
     $scope.apiConnectionStatus = {
       'state': 'Success',
-      'msg': 'Connection to API Micro Service SUCCEEDED'
+      'msg'  : 'Connection to API MicroService SUCCEEDED'
     };
     $scope.log = $log;
     $scope.env = {};
@@ -43,7 +43,7 @@ app.controller('mainCtrl',
           .error(function () {
             $scope.apiConnectionStatus = {
               'state': 'error',
-              'msg': 'Connection to API Micro Service, FAILED'
+              'msg': 'Connection to API MicroService, FAILED'
             };
           }
         );
