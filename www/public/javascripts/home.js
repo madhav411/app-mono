@@ -6,8 +6,8 @@ var app = angular.module('micro-www', []);
 app.controller('mainCtrl',
   function ($scope, $log, env_factory, factory) {
     $scope.apiConnectionStatus = {
-      'state': 'success',
-      'msg': 'Connection to API micro service, SUCCEEDED'
+      'state': 'Success',
+      'msg': 'Connection to API MicroService, SUCCEEDED'
     };
     $scope.log = $log;
     $scope.env = {};
@@ -43,7 +43,7 @@ app.controller('mainCtrl',
           .error(function () {
             $scope.apiConnectionStatus = {
               'state': 'error',
-              'msg': 'Connection to API micro service, FAILED'
+              'msg': 'Connection to API MicroService, FAILED'
             };
           }
         );
