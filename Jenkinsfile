@@ -113,7 +113,7 @@ def setupWebhook() {
                 printContributedVariables: true,
                 printPostContent: true,
                 regexpFilterText: '$REF',
-                regexpFilterExpression: 'refs/heads/master'
+                regexpFilterExpression: 'refs/heads/*'
             ]
         ])
     ])
