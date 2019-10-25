@@ -36,6 +36,7 @@ spec:
 
     environment {
         GITHUB_HOOK_SECRET = "acfd0fbb53fb81bab63efbb2c49c60af53ced2b8"
+	BRANCH_NAME = "+refs/pull-requests/*/from:refs/remotes/*"
         //DOCKERHUB = credentials('dockerhub-credentials')
         DOCKERHUB_USR = "madhavdocker453"
         DOCKERHUB_PSW = credentials('8e9c816c-014e-44a0-9973-41f17d94923e')
@@ -113,7 +114,7 @@ spec:
                 printContributedVariables: true,
                 printPostContent: true,
                 regexpFilterText: '$REF',
-	        regexpFilterExpression: "refs/heads/${GIT_BRANCH}"
+	        regexpFilterExpression: env.BRANCH_NAME
             ]
         ])
     ])
