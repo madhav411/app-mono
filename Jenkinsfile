@@ -113,7 +113,7 @@ spec:
                 printContributedVariables: true,
                 printPostContent: true,
                 regexpFilterText: '$REF',
-                regexpFilterExpression: 'refs/heads/sample'
+	        regexpFilterExpression: "refs/heads/${GIT_BRANCH}"
             ]
         ])
     ])
