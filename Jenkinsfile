@@ -41,14 +41,14 @@ spec:
         DOCKERHUB_PSW = credentials('8e9c816c-014e-44a0-9973-41f17d94923e')
     }
 
-    stages {
+/*    stages {
         stage('configure webook') {
             steps {
                 script {
                     setupWebhook()
 	        }
 	    }
-        }
+        }  */
 
         stage('Find app name to build') {
             steps {
@@ -101,7 +101,7 @@ spec:
     }
 }
 
-def setupWebhook() {
+/* def setupWebhook() {
     properties([
         pipelineTriggers([
             [$class: 'GenericTrigger',
@@ -117,4 +117,4 @@ def setupWebhook() {
             ]
         ])
     ])
-}
+} */
