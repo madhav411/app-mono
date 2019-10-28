@@ -36,20 +36,10 @@ spec:
 
     environment {
         GITHUB_HOOK_SECRET = "acfd0fbb53fb81bab63efbb2c49c60af53ced2b8"
-	BRANCH_NAME = "+refs/pull-requests/*/from:refs/remotes/*"
         //DOCKERHUB = credentials('dockerhub-credentials')
         DOCKERHUB_USR = "madhavdocker453"
         DOCKERHUB_PSW = credentials('8e9c816c-014e-44a0-9973-41f17d94923e')
     }
-
-    stages {
-        stage('configure webook') {
-            steps {
-                script {
-                    setupWebhook()
-	        }
-	    }
-        }  
 
         stage('Find app name to build') {
             steps {
@@ -101,21 +91,3 @@ spec:
         }
     }
 }
-
- def setupWebhook() {
-    properties([
-        pipelineTriggers([
-            [$class: 'GenericTrigger',
-                genericVariables: [
-                    [key: 'REF', value: '$.ref'],
-                ],
-                causeString: 'Triggered on github push',
-                token: env.GITHUB_HOOK_SECRET,
-                printContributedVariables: true,
-                printPostContent: true,
-                regexpFilterText: '$REF',
-	        regexpFilterExpression: env.BRANCH_NAME
-            ]
-        ])
-    ])
-} 
