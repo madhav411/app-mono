@@ -110,8 +110,8 @@ def setupWebhook() {
                 token: env.GITHUB_HOOK_SECRET,
                 printContributedVariables: true,
                 printPostContent: true,
-                regexpFilterText: '+refs/pull-requests/*/from:refs/remotes/*',
-                regexpFilterExpression: '**/pull-requests/**'
+                regexpFilterText: '$REF',
+                regexpFilterExpression: 'refs/heads/master'
             ]
         ])
     ])
