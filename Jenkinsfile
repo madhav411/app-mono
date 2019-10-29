@@ -106,7 +106,7 @@ def setupWebhook() {
                 genericVariables: [
                     [key: 'REF', value: '$.ref'],
                 ],
-                causeString: 'Triggered on github push',
+                causeString: 'Triggered on pull_request',
                 token: env.GITHUB_HOOK_SECRET,
                 printContributedVariables: true,
                 printPostContent: true,
