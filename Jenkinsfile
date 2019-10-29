@@ -40,6 +40,14 @@ spec:
         DOCKERHUB_USR = "madhavdocker453"
         DOCKERHUB_PSW = credentials('8e9c816c-014e-44a0-9973-41f17d94923e')
     }
+	stages {
+        stage('configure webook') {
+            steps {
+                script {
+                    setupWebhook()
+	        }
+	    }
+        }
 
         stage('Find app name to build') {
             steps {
@@ -90,4 +98,21 @@ spec:
             deleteDir()
         }
     }
+}
+def setupWebhook() {
+    properties([
+        pipelineTriggers([
+            [$class: 'GenericTrigger',
+                genericVariables: [
+                    [key: 'REF', value: '$.ref'],
+                ],
+                causeString: 'Triggered on github push',
+                token: env.GITHUB_HOOK_SECRET,
+                printContributedVariables: true,
+                printPostContent: true,
+                regexpFilterText: '+refs/pull-requests/*/from:refs/remotes/*',
+                regexpFilterExpression: '**/pull-requests/**'
+            ]
+        ])
+    ])
 }
